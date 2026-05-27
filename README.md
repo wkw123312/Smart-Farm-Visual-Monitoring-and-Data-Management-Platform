@@ -60,6 +60,12 @@ http://127.0.0.1:8000
 - `static/`：静态资源文件
 - `manage.py`：Django 管理命令入口
 
+## 页面展示
+<img width="1877" height="917" alt="监控总览界面" src="https://github.com/user-attachments/assets/ea59fa79-3a3a-491c-b6e9-2d43f8f0e712" />
+<img width="1898" height="597" alt="bed1fe955fd5230ead6530ba7798d45" src="https://github.com/user-attachments/assets/fe4d0a3a-b60a-443a-8fab-939a4c95f366" />
+
+
+
 ## Notes
 
 - 当前仓库为标准 Django 项目结构。
