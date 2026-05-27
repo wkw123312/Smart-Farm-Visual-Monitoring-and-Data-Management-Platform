@@ -1,0 +1,37 @@
+# Ignore personal or local configuration
+config.yaml
+config.yml
+*.env
+*.local
+*.secret
+
+# Ignore model weights and checkpoints
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Ignore dataset content and generated outputs
+BCCD/
+datasets/
+runs/
+logs/
+media/
+staticfiles/
+
+# Ignore local database files
+db.sqlite3
+*.sqlite3
+*.sqlite
+
+# Ignore Python and IDE cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignore editor and OS files
+.vscode/
+.idea/
+*.iml
+.DS_Store

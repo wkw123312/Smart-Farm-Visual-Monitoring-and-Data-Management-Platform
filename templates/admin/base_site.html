@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}智能农场视觉监测与数据管理平台后台管理{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/custom.css' %}">
+{% endblock %}
+
+{% block branding %}
+  <div class="sf-admin-brand">
+    <span class="sf-admin-title">智能农场视觉监测与数据管理平台 后台管理</span>
+  </div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

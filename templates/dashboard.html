@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>智能农场视觉监测与数据管理平台 - 总览</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<header class="top-bar">
+    <div class="brand">
+        <h1>智能农场视觉监测与数据管理平台</h1>
+    </div>
+    <div class="top-right">
+        <div class="user-info">
+            <span>当前用户：{{ request.user.username }}</span>
+            <span class="time">当前时间：{{ now|date:"Y-m-d H:i" }}</span>
+        </div>
+        <div class="top-actions">
+            {% if request.user.is_staff %}
+            <a class="btn btn-secondary" href="/admin/" target="_blank">后台管理</a>
+            {% endif %}
+            <a class="btn btn-danger" href="{% url 'monitoring:logout' %}">退出</a>
+        </div>
+    </div>
+</header>
+<main class="container">
+    <section class="summary-cards">
+        <div class="card">
+            <h2>农场数量</h2>
+            <p class="value">{{ farm_count }}</p>
+        </div>
+        <div class="card">
+            <h2>在线设备</h2>
+            <p class="value">{{ device_count }}</p>
+        </div>
+        <div class="card">
+            <h2>警告总数</h2>
+            <p class="value">{{ alert_count }}</p>
+        </div>
+    </section>
+
+    <section class="panel-row">
+        <section class="panel">
+            <h2>近期视觉监测快照</h2>
+            <div class="observations-grid">
+                {% for obs in recent_observations %}
+                    <figure class="observation-item">
+                        <img src="{{ obs.image_path }}" alt="监测图像"
+                             class="thumb-img"
+                             data-full="{{ obs.image_path }}"
+                             onerror="this.src='/static/img/placeholder_cam.jpg';">
+                        <figcaption>
+                            <div>{{ obs.device.farm.name }} - {{ obs.device.name }}</div>
+                            <div>{{ obs.capture_time|date:"Y-m-d H:i" }}</div>
+                            <div class="desc">{{ obs.description }}</div>
+                        </figcaption>
+                    </figure>
+                {% empty %}
+                    <p>暂无监测数据，请先初始化示例数据。</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>最新警告</h2>
+            <table class="alerts-table">
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>农场/设备</th>
+                    <th>级别</th>
+                    <th>标题</th>
+                    <th>状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for alert in recent_alerts %}
+                    <tr>
+                        <td>{{ alert.created_at|date:"Y-m-d H:i" }}</td>
+                        <td>
+                            {{ alert.farm.name }}{% if alert.device %} / {{ alert.device.name }}{% endif %}
+                        </td>
+                        <td>{{ alert.get_severity_display }}</td>
+                        <td>{{ alert.title }}</td>
+                        <td>{% if alert.is_resolved %}已处理{% else %}未处理{% endif %}</td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="5">暂无警告数据。</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </section>
+</main>
+<div id="image-modal" class="image-modal" style="display:none;">
+    <div class="image-modal-backdrop" onclick="closeImageModal()"></div>
+    <div class="image-modal-content">
+        <img id="image-modal-img" src="" alt="放大监测图像">
+        <button type="button" class="image-modal-close" onclick="closeImageModal()">关闭</button>
+    </div>
+</div>
+<script>
+    function openImageModal(src) {
+        const modal = document.getElementById('image-modal');
+        const img = document.getElementById('image-modal-img');
+        img.src = src;
+        modal.style.display = 'block';
+    }
+
+    function closeImageModal() {
+        const modal = document.getElementById('image-modal');
+        modal.style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const thumbs = document.querySelectorAll('.thumb-img');
+        thumbs.forEach(function (el) {
+            el.addEventListener('click', function () {
+                const src = el.getAttribute('data-full') || el.getAttribute('src');
+                openImageModal(src);
+            });
+        });
+    });
+</script>
+<footer class="footer">
+    <p>智能农场视觉监测与数据管理平台</p>
+</footer>
+</body>
+</html>

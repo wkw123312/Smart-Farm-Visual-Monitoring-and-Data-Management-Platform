@@ -1,0 +1,135 @@
+.sf-admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sf-admin-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1d8348;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.sf-admin-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#header {
+  background: linear-gradient(90deg, #1d8348 0%, #27ae60 40%, #145a32 100%);
+}
+
+#content-main h1, #content-main h2, #content-main h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+#user-tools {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.module caption, .inline-group h2 {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+#content-related .module h2, .module caption {
+  background: #ecf9f1;
+  color: #145a32;
+}
+
+.module table th {
+  background: #f8f9fb;
+}
+
+.breadcrumbs {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+/* 1. 标题高级感设计 */
+#content h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #145a32;
+    margin: 20px 0 30px 0;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #ecf9f1, transparent); /* 渐变底色 */
+    border-left: 6px solid #1d8348;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+/* 2. 布局优化：不再居中，而是“左侧对齐+适度留白” */
+#main {
+    display: block;
+}
+
+#content {
+    /* 将内容固定在距离左边 10% 的位置，这样在大屏小屏下视觉都舒服 */
+    padding: 30px 5% 30px 10% !important;
+    max-width: 1400px; /* 进一步放大上限，避免太局促 */
+    margin: 0;
+}
+
+/* 3. 模块卡片精致化 */
+.module {
+    border: none !important;
+    background: #ffffff;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* 柔和阴影 */
+    transition: transform 0.2s ease; /* 鼠标悬停微动效果 */
+    margin-bottom: 25px;
+}
+
+.module:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 4. 最近动作栏的特殊处理（对齐并加高） */
+.dashboard {
+    display: flex !important;
+    align-items: flex-start; /* 确保左右顶部严格对齐 */
+    gap: 30px;
+}
+
+#content-related {
+    flex: 0 0 300px; /* 固定宽度，不随内容压缩 */
+    margin-top: 0 !important; /* 核心：强制消除顶部间距，让它往上移 */
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 0; /* 内部留白交给里面的 module */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+#content-related .module {
+    margin: 0 !important;
+    height: 100%; /* 让它尝试充满父容器高度 */
+    min-height: 400px; /* 如果你想让它视觉上更“高”一点，可以设置一个最小高度 */
+    box-shadow: none; /* 既然父级有了阴影，这里就去掉 */
+}
+
+#content-related h2 {
+    margin-top: 0 !important; /* 消除标题自带的位移 */
+    border-radius: 12px 12px 0 0; /* 圆角只在顶部 */
+    background: #1d8348;
+    color: #ffffff;
+    font-weight: bold !important;
+    padding: 12px 15px;
+}
+
+/* 调整左侧容器，确保它不干扰右侧 */
+.dashboard .colMS {
+    flex: 1;
+    margin: 0 !important;
+}
+
+/* 5. 调整表格内部的间距，增加呼吸感 */
+.module table th, .module table td {
+    padding: 12px 15px !important;
+}
