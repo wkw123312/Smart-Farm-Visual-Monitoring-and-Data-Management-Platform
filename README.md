@@ -23,46 +23,21 @@ pip install -r requirements.txt
 
 ## Usage
 
-1. 复制配置模板：
-   ```bash
-cp config.yaml.example config.yaml
-```
-2. 编辑 `config.yaml`，将其中的占位路径替换成你的本地目录，例如：
-   - `dataset_root: ./BCCD`
-   - `data_yaml: ./datasets/data.yaml`
-   - `model_path: ./yolov8n.pt`
-   - `output_dir: ./runs`
-   - `log_dir: ./logs`
-3. 运行 Django 开发服务器：
+1. 运行 Django 开发服务器：
    ```bash
 python manage.py runserver 0.0.0.0:8000
 ```
-4. 如果你使用 `app_gradio.py` 启动 Gradio 接口：
+
+2. 在浏览器中访问：
    ```bash
-python app_gradio.py
+http://127.0.0.1:8000
 ```
 
 ## Configuration
 
-本仓库提供 `config.py` 和 `config.yaml.example`，用于将本地路径和运行参数从代码中抽离出来。建议：
+本项目是一个 Django Web 应用，配置主要由 `smartfarm_platform/settings.py` 管理。
 
-- 不要将 `config.yaml` 提交到仓库。
-- 通过 `.gitignore` 自动忽略本地配置文件和私有数据。
-
-### 推荐的配置字段
-
-- `project_root`: 项目根目录
-- `dataset_root`: 原始数据目录
-- `data_yaml`: 数据集 YAML 配置文件路径
-- `model_path`: 模型权重文件路径
-- `output_dir`: 训练或推理结果输出目录
-- `log_dir`: 日志目录
-- `device`: 运行设备（如 `cpu` 或 `cuda`）
-- `gradio_port`: Gradio 服务端口
-- `secret_key`: Django 或其他服务密钥
-- `debug`: 是否启用调试模式
-- `allowed_hosts`: 允许的主机列表
-
+如果你需要扩展本项目，可以在未来通过 `config.yaml` 或环境变量注入配置，但当前代码并不依赖 `config.py`。
 ## Disclaimer
 
 本项目代码已做脱敏处理，删除了个人服务器绝对路径和隐私配置。使用前请务必创建并编辑 `config.yaml`，将所有路径改为你本地的合法目录。请勿将包含敏感信息的配置文件、模型权重或私有数据提交到公共仓库。
