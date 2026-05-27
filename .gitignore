@@ -12,7 +12,6 @@ config.yml
 *.onnx
 
 # Ignore dataset content and generated outputs
-BCCD/
 datasets/
 runs/
 logs/
