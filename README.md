@@ -59,13 +59,3 @@ http://127.0.0.1:8000
 
 本项目代码已做脱敏处理，删除了个人服务器绝对路径和隐私配置。请勿将敏感数据、个人配置文件或私有文件提交到公共仓库。
 
-## Git 操作
-
-```bash
-git init
-git add .
-git commit -m "Initialize standard Django project"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git push -u origin main
-```
